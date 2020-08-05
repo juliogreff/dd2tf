@@ -3,7 +3,6 @@
 package main
 
 import (
-	"fmt"
 	"github.com/zorkian/go-datadog-api"
 )
 
@@ -11,8 +10,7 @@ type ScreenBoard struct {
 }
 
 func (s ScreenBoard) getElement(client datadog.Client, id interface{}) (interface{}, error) {
-	idStr := fmt.Sprintf("%v", id)
-	elem, err := client.GetScreenboard(*datadog.String(idStr))
+	elem, err := client.GetScreenboard(id)
 	return elem, err
 }
 

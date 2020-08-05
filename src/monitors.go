@@ -3,6 +3,9 @@
 package main
 
 import (
+	"errors"
+	"strconv"
+
 	"github.com/zorkian/go-datadog-api"
 )
 
@@ -10,7 +13,20 @@ type Monitor struct {
 }
 
 func (m Monitor) getElement(client datadog.Client, id interface{}) (interface{}, error) {
-	mon, err := client.GetMonitor(*datadog.Int(id.(int)))
+	var idInt int
+	switch v := id.(type) {
+	case string:
+		var err error
+		idInt, err = strconv.Atoi(v)
+		if err != nil {
+			return "", err
+		}
+	case int:
+		idInt = v
+	default:
+		return "", errors.New("unsupported id type, should be string or int")
+	}
+	mon, err := client.GetMonitor(idInt)
 	return mon, err
 }
 

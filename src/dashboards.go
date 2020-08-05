@@ -3,7 +3,6 @@
 package main
 
 import (
-	"fmt"
 	"github.com/zorkian/go-datadog-api"
 )
 
@@ -11,8 +10,7 @@ type Dashboard struct {
 }
 
 func (d Dashboard) getElement(client datadog.Client, id interface{}) (interface{}, error) {
-	idStr := fmt.Sprintf("%v", id)
-	dash, err := client.GetDashboard(idStr)
+	dash, err := client.GetDashboard(id)
 	return dash, err
 }
 

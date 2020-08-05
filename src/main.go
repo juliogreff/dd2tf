@@ -5,10 +5,11 @@ package main
 import (
 	"bufio"
 	"fmt"
-	log "github.com/sirupsen/logrus"
 	"os"
 	"strconv"
 	"text/template"
+
+	log "github.com/sirupsen/logrus"
 
 	flag "github.com/spf13/pflag"
 	"github.com/zorkian/go-datadog-api"
@@ -87,7 +88,7 @@ type SecondaryOptions struct {
 
 func NewSecondaryOptions(cmd *flag.FlagSet) *SecondaryOptions {
 	options := &SecondaryOptions{}
-	cmd.StringSliceVar(&options.ids, "ids", []string{}, "IDs of the elements to fetch.")
+	cmd.StringArrayVar(&options.ids, "ids", []string{}, "IDs of the elements to fetch.")
 	cmd.BoolVar(&options.all, "all", false, "Export all available elements.")
 	cmd.BoolVar(&options.files, "files", false, "Save each element into a separate file.")
 	cmd.BoolVar(&options.debug, "debug", false, "Enable debug output.")
