@@ -1,4 +1,3 @@
-[![Build Status](https://travis-ci.org/amnk/dd2tf.svg?branch=master)](https://travis-ci.org/amnk/dd2tf)
 
 A simple utility to convert DataDog dashboards and/or monitors to Terraform format.
 
